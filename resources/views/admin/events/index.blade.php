@@ -6,9 +6,10 @@
             @foreach ($events as $event)
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header">{{ $event->title }}</div>
+                        <div class="card-header">{{ $event->name }}</div>
                         <div class="card-subtitle">{{$event->type?->name}}</div>
-                        <div class="card-body">{{ $event->description }}</div>
+                        <div class="card-body">Data evento {{ $event->date }}</div>
+                        <div class="card-body">Ticket disponibili: {{ $event->available_tickets }}</div>
                         <div class="buttons d-flex">
                             <a type="button" class="btn btn-primary" href="{{ route('admin.events.show', $event->id) }}">Details</a>
                             <a type="button" class="btn btn-success" href="{{ route('admin.events.edit', $event->id) }}">Edit</a>
