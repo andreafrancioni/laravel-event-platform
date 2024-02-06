@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller; // Controller di base da importare
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
+use App\Models\Tag;
 
 class EventController extends Controller
 {
@@ -15,8 +16,8 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-
-        return view("admin.events.index", compact("events"));
+        $tags = Tag::all();
+        return view("admin.events.index", compact("events", "tags"));
     }
 
     /**
@@ -24,7 +25,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view("admin.events.create");
+        $tags = Tag::all();
+        return view("admin.events.create", compact("tags"));
     }
 
     /**
@@ -37,6 +39,10 @@ class EventController extends Controller
         $newevent = new Event();
         $newevent->fill($validated);
         $newevent->save();
+
+        if ($request->tags) {
+            $newevent->tags()->attach($request->tags);
+        }
 
         return redirect()->route("admin.events.index");
     }
@@ -70,6 +76,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return redirect()->route("admin.events.index");
     }
 }

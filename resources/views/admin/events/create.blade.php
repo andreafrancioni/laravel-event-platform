@@ -42,6 +42,15 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label for="tag" class="form-label">Tag</label>
+                    <select multiple name="tags[]" id="" class="form-select">
+                        <option value="">nessun tag</option>
+                        @foreach ($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>
         </div>
