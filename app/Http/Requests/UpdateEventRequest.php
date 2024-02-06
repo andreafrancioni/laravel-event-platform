@@ -11,7 +11,7 @@ class UpdateEventRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required|max:20",
+            "date" => "required|max:50",
+            "available_tickets" => "max:50",
         ];
     }
 }

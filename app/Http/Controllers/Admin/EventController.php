@@ -24,7 +24,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.events.create");
     }
 
     /**
@@ -32,7 +32,13 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $newevent = new Event();
+        $newevent->fill($validated);
+        $newevent->save();
+
+        return redirect()->route("admin.events.index");
     }
 
     /**
