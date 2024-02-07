@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/prova", function () {
-    $dati = [
-        "nome" => "Andrea",
-        "cognome" => "Francioni"
-    ];
+    // $dati = [
+    //     "nome" => "Andrea",
+    //     "cognome" => "Francioni"
+    // ];
+
+    $dati = Event::all();
 
     return response()->json($dati);
 });
