@@ -6,14 +6,6 @@ use App\Http\Controllers\Admin\EventController;
 
 /* ... */
 
-Route::get("/prova", function () {
-    $dati = [
-        "nome" => "Andrea",
-        "cognome" => "Francioni"
-    ];
-
-    return response()->json($dati);
-});
 
 
 Route::get('/', function () {

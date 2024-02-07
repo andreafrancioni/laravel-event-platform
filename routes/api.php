@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("/prova", function () {
+    $dati = [
+        "nome" => "Andrea",
+        "cognome" => "Francioni"
+    ];
+
+    return response()->json($dati);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
