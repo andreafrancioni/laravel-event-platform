@@ -13,6 +13,7 @@ class Event extends Model
         "name",
         "date",
         "available_tickets",
+        "tag"
     ];
 
     public function tags()

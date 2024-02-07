@@ -5,12 +5,10 @@
 <section class="show">
     <div class="container">
         <div class="row">
-            <h2>{{$event->title}}</h2>
+            <h2>{{$event->name}}</h2>
             <div class="row">
-                <img src="{{$event->thumb}}" alt="">
-                <p>{{$event->description}}</p>
-                <span>{{$event->creation_date}}</span>
-                <span>{{$event->type}}</span>
+                <p>Data evento: {{$event->date}}</p>
+                <span>Ticket disponibili: {{$event->available_tickets}}</span>
                 <div class="buttons d-flex">
                     <a type="button" class="btn btn-primary" href="{{route('admin.events.index')}}">Back</a>
                     <a type="button" class="btn btn-success" href="{{route('admin.events.edit', $event->id)}}">Edit</a>

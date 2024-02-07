@@ -25,6 +25,7 @@ class UpdateEventRequest extends FormRequest
             "name" => "required|max:20",
             "date" => "required|max:50",
             "available_tickets" => "max:50",
+            "tags" => [],
         ];
     }
 }

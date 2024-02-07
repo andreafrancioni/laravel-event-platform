@@ -52,7 +52,8 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $tags = Tag::all();
+        return view("admin.events.show", compact("event", "tags"));
     }
 
     /**
@@ -60,7 +61,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $tags = Tag::all();
+        return view("admin.events.edit", compact("event", "tags"));
     }
 
     /**
@@ -68,7 +70,20 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        $validated = $request->validated();
+
+        $event->fill($validated);
+        $event->update();
+        if ($request->filled("tags")) {
+            $validated["tags"] = array_filter($validated["tags"]) ? $validated["tags"] : [];  //Livecoding con Luca
+            $event->tags()->sync($validated["tags"]);
+        }
+
+        // if ($request->tags) {
+        //     $event->tags()->attach($request->tags);
+        // }
+
+        return redirect()->route("admin.events.index");
     }
 
     /**
