@@ -29,6 +29,8 @@ Route::get("/prova", function () {
 
 Route::get("/events", [EventController::class, "index"]);
 
+Route::get("/events/{id}", [EventController::class, "show"]);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

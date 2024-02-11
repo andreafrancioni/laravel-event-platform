@@ -17,4 +17,13 @@ class EventController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function show($id)
+    {
+        $event = Event::with(['user', 'tags:name'])->find($id);
+        return response()->json([
+            "success" => $event ? true : false,
+            "results" => $event ? $event : "Nessun evento trovato con l'id"
+        ]);
+    }
 }
